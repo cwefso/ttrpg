@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import CharacterSheet from "./components/CharacterSheet";
-import CharacterForm from "./components/CharacterForm";
 import { Character } from "./types";
 
 export default function Home() {
