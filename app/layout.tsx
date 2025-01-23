@@ -26,10 +26,7 @@ export default function RootLayout({
                   </li>
                 </ul>
               </div>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+            </SignedOut>{" "}
           </header>
           <main>{children}</main>
         </body>

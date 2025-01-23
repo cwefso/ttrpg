@@ -16,7 +16,8 @@ export async function GET() {
     const userMetadata = await user.publicMetadata;
 
     // Retrieve the character from the metadata
-    const character: {} | Character | null = userMetadata?.character || null;
+    const character: unknown | Character | null =
+      userMetadata?.character || null;
 
     return NextResponse.json({ character });
   } catch (error) {

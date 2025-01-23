@@ -47,18 +47,20 @@ const Weapons = ({
         {displayCharacter.weapons.map((weapon, index) => (
           <div
             key={index}
-            className="p-4 bg-gray-800 rounded flex flex-col items-end gap-4"
+            className="p-4 bg-gray-800 rounded flex flex-col items-start gap-2"
           >
-            <button
-              className="hover:text-red-500 hover:bg-white border border:white px-2 py-1 rounded"
-              onClick={(e) => handleDeleteWeapon(e, index)}
-            >
-              X
-            </button>
-            <div className="flex flex-row justify-between w-full">
-              <p className="font-bold col-span-2">{weapon.name}</p>
-              <p className="col-span-2 row-start-2">{weapon.damage}</p>
+            <div className="flex flex-row justify-between items-center w-full">
+              <p className="font-bold text-xl">{weapon.name}</p>
+              <button
+                className="hover:text-red-800 hover:bg-white border border:white px-2 text-xl rounded"
+                onClick={(e) => handleDeleteWeapon(e, index)}
+              >
+                X
+              </button>
             </div>
+            <p className="text-lg">
+              Damage: <span>{weapon.damage}</span>
+            </p>
           </div>
         ))}
       </div>

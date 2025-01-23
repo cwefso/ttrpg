@@ -1,4 +1,4 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignedOut } from "@clerk/nextjs";
 
 const Header = () => {
   return (
@@ -12,9 +12,6 @@ const Header = () => {
           </ul>
         </div>
       </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
     </header>
   );
 };

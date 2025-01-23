@@ -4,6 +4,7 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 import { Character } from "../types";
 import { useUpdateCharacter } from "../hooks/useUpdateCharacter";
 import Weapons from "./Weapons";
+import Status from "./Status";
 
 interface CharacterSheetProps {
   character: Character;
@@ -37,19 +38,22 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
     });
   };
 
-  const deleteWeapon = useCallback((indexToDelete: number) => {
-    setDisplayCharacter((prevCharacter) => {
-      const updatedCharacter = {
-        ...prevCharacter,
-        weapons: prevCharacter.weapons.filter(
-          (_, index) => index !== indexToDelete
-        ),
-      };
-      console.log("display,", updatedCharacter);
-      updateCharacter(updatedCharacter);
-      return updatedCharacter;
-    });
-  }, []);
+  const deleteWeapon = useCallback(
+    (indexToDelete: number) => {
+      setDisplayCharacter((prevCharacter) => {
+        const updatedCharacter = {
+          ...prevCharacter,
+          weapons: prevCharacter.weapons.filter(
+            (_, index) => index !== indexToDelete
+          ),
+        };
+        console.log("display,", updatedCharacter);
+        updateCharacter(updatedCharacter);
+        return updatedCharacter;
+      });
+    },
+    [updateCharacter]
+  );
 
   //
   useEffect(() => {
@@ -65,11 +69,13 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
     };
   }, [displayCharacter, updateCharacter]);
 
+  console.log(character);
+
   return (
-    <div className="p-6 bg-gray-900 text-white mx-auto rounded shadow-lg">
+    <div className="p-12 bg-gray-900 text-white rounded shadow-lg w-[95vw] h-[95vh] justify-around flex flex-col">
       <header className="border-b border-gray-700 pb-4 mb-6">
         <h1 className="text-4xl font-bold">{displayCharacter.name}</h1>
-        <div className="w-full flex flex-row justify-between">
+        <div className="w-full flex flex-row justify-between items-center">
           <p className="text-lg text-gray-400">
             {displayCharacter.background} | Year: {displayCharacter.year}
           </p>
@@ -87,7 +93,10 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
         <h2 className="text-2xl font-semibold mb-2">Attributes</h2>
         <div className="grid grid-cols-5 gap-4 text-center">
           {Object.entries(displayCharacter.attributes).map(([attr, value]) => (
-            <div key={attr} className="p-4 bg-gray-800 rounded">
+            <div
+              key={attr}
+              className="p-4 bg-gray-800 rounded flex flex-row justify-between"
+            >
               <p className="font-bold capitalize text-xl">{attr}</p>
               <p className="text-xl">d{value}</p>
             </div>
@@ -99,7 +108,10 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
         <h2 className="text-2xl font-semibold mb-2">Skills</h2>
         <div className="grid grid-cols-3 gap-4">
           {Object.entries(displayCharacter.skills).map(([skill, value]) => (
-            <div key={skill} className="p-4 bg-gray-800 rounded">
+            <div
+              key={skill}
+              className="p-4 bg-gray-800 rounded flex flex-row justify-between"
+            >
               <p className="font-bold capitalize text-xl">
                 {normalizeSkillName(skill)}
               </p>
@@ -137,95 +149,10 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
         deleteWeapon={deleteWeapon}
       />
 
-      <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Status</h2>
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div className="p-4 bg-gray-800 rounded">
-            <p className="font-bold">Wounds</p>
-            <div className="flex justify-center items-center gap-2">
-              <button
-                className="bg-red-500 px-2 py-1 rounded"
-                onClick={() =>
-                  setDisplayCharacter((prev) => ({
-                    ...prev,
-                    wounds: Math.max(0, prev.wounds - 1),
-                  }))
-                }
-              >
-                -
-              </button>
-              <p className="text-xl">{displayCharacter.wounds}</p>
-              <button
-                className="bg-green-500 px-2 py-1 rounded"
-                onClick={() =>
-                  setDisplayCharacter((prev) => ({
-                    ...prev,
-                    wounds: prev.wounds + 1,
-                  }))
-                }
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="p-4 bg-gray-800 rounded">
-            <p className="font-bold">Fatigue</p>
-            <div className="flex justify-center items-center gap-2">
-              <button
-                className="bg-red-500 px-2 py-1 rounded"
-                onClick={() =>
-                  setDisplayCharacter((prev) => ({
-                    ...prev,
-                    fatigue: Math.max(0, prev.fatigue - 1),
-                  }))
-                }
-              >
-                -
-              </button>
-              <p className="text-xl">{displayCharacter.fatigue}</p>
-              <button
-                className="bg-green-500 px-2 py-1 rounded"
-                onClick={() =>
-                  setDisplayCharacter((prev) => ({
-                    ...prev,
-                    fatigue: prev.fatigue + 1,
-                  }))
-                }
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="p-4 bg-gray-800 rounded">
-            <p className="font-bold">Bennies</p>
-            <div className="flex justify-center items-center gap-2">
-              <button
-                className="bg-red-500 px-2 py-1 rounded"
-                onClick={() =>
-                  setDisplayCharacter((prev) => ({
-                    ...prev,
-                    bennies: Math.max(0, prev.bennies - 1),
-                  }))
-                }
-              >
-                -
-              </button>
-              <p className="text-xl">{displayCharacter.bennies}</p>
-              <button
-                className="bg-green-500 px-2 py-1 rounded"
-                onClick={() =>
-                  setDisplayCharacter((prev) => ({
-                    ...prev,
-                    bennies: prev.bennies + 1,
-                  }))
-                }
-              >
-                +
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Status
+        displayCharacter={displayCharacter}
+        setDisplayCharacter={setDisplayCharacter}
+      />
     </div>
   );
 };
