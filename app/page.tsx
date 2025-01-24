@@ -33,7 +33,7 @@ export default function Home() {
     };
 
     fetchCharacter();
-  }, []);
+  }, [router]);
 
   if (loading) {
     return <p>Loading...</p>;
