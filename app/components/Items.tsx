@@ -1,65 +1,61 @@
 import { useState, useRef } from "react";
-import { Character, Weapon } from "../types";
+import { Character } from "../types";
 
-interface WeaponsProps {
+interface ItemsProps {
   displayCharacter: Character;
-  addWeapon: (weapon: Weapon) => void;
-  deleteWeapon: (indexToDelete: number) => void;
+  addItem: (item: { name: string; description: string }) => void;
+  deleteItem: (indexToDelete: number) => void;
 }
 
-const Weapons = ({
-  displayCharacter,
-  addWeapon,
-  deleteWeapon,
-}: WeaponsProps) => {
+const Items = ({ displayCharacter, addItem, deleteItem }: ItemsProps) => {
   const [isAdding, setIsAdding] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);
-  const damageRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLInputElement>(null);
 
-  const handleAddWeapon = () => {
-    const newWeapon = {
+  const handleAddItem = () => {
+    const newItem = {
       name: nameRef.current?.value || "",
-      damage: damageRef.current?.value || "",
+      description: descriptionRef.current?.value || "",
     };
 
-    if (!newWeapon.name || !newWeapon.damage) {
+    if (!newItem.name || !newItem.description) {
       alert("Both fields are required.");
       return;
     }
-    addWeapon(newWeapon);
+    addItem(newItem);
     if (nameRef.current) nameRef.current.value = "";
-    if (damageRef.current) damageRef.current.value = "";
+    if (descriptionRef.current) descriptionRef.current.value = "";
     setIsAdding(false);
   };
 
-  const handleDeleteWeapon = (
+  const handleDeleteItem = (
     e: React.MouseEvent<HTMLButtonElement>,
     index: number
   ) => {
     e.preventDefault();
-    deleteWeapon(index);
+    deleteItem(index);
   };
 
   return (
     <section className="mb-6">
-      <h2 className="text-2xl font-semibold mb-2">Weapons</h2>
+      <h2 className="text-2xl font-semibold mb-2">Items</h2>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 my-4">
-        {displayCharacter.weapons.map((weapon, index) => (
+        {displayCharacter.items.map((item, index) => (
           <div
             key={index}
             className="p-4 bg-gray-800 rounded flex flex-col items-start gap-2"
           >
             <div className="flex flex-row justify-between items-center w-full">
-              <p className="font-bold text-xl">{weapon.name}</p>
+              <p className="font-bold text-xl">{item.name}</p>
               <button
                 className="hover:text-red-800 hover:bg-white border border:white px-2 text-xl rounded"
-                onClick={(e) => handleDeleteWeapon(e, index)}
+                onClick={(e) => handleDeleteItem(e, index)}
               >
                 X
               </button>
             </div>
             <p className="text-lg">
-              Damage: <span>{weapon.damage}</span>
+              Damage: <span>{item.description}</span>
             </p>
           </div>
         ))}
@@ -76,19 +72,19 @@ const Weapons = ({
           className="p-4 bg-gray-800 rounded col-span-3 flex flex-col gap-2"
           onSubmit={(e) => {
             e.preventDefault();
-            handleAddWeapon();
+            handleAddItem();
           }}
         >
           <input
             type="text"
-            placeholder="Weapon Name"
+            placeholder="Item Name"
             ref={nameRef}
             className="p-2 rounded bg-gray-700 text-white"
           />
           <input
             type="text"
-            placeholder="Weapon Damage"
-            ref={damageRef}
+            placeholder="Item Damage"
+            ref={descriptionRef}
             className="p-2 rounded bg-gray-700 text-white"
           />
           <div className="flex justify-between">
@@ -112,4 +108,4 @@ const Weapons = ({
   );
 };
 
-export default Weapons;
+export default Items;

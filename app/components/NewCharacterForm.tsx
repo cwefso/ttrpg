@@ -150,6 +150,7 @@ export default function NewCharacterForm() {
       fatigue: 0,
       bennies: 0,
       weapons: [],
+      items: [],
     };
     updateCharacter(character);
     console.log("Character Created:", character);

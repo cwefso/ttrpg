@@ -5,6 +5,12 @@ import { Character } from "../types";
 import { useUpdateCharacter } from "../hooks/useUpdateCharacter";
 import Weapons from "./Weapons";
 import Status from "./Status";
+import { Attributes } from "./Attributes";
+import { SkillsSection } from "./Skills";
+import { Header } from "./Header";
+import { Edges } from "./Edges";
+import { Hindrances } from "./Hindrances";
+import Items from "./Items";
 
 interface CharacterSheetProps {
   character: Character;
@@ -14,12 +20,6 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
   const [displayCharacter, setDisplayCharacter] = useState(character);
   const { updateCharacter } = useUpdateCharacter();
   const prevCharacterRef = useRef<Character | null>(null);
-
-  function normalizeSkillName(skill: string): string {
-    return skill
-      .replace(/([a-z])([A-Z])/g, "$1 $2")
-      .replace(/^./, (str) => str.toUpperCase());
-  }
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -55,6 +55,32 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
     [updateCharacter]
   );
 
+  const addItem = (item: { name: string; description: string }) => {
+    setDisplayCharacter((prevCharacter) => {
+      const updatedCharacter = {
+        ...prevCharacter,
+        items: [...prevCharacter.items, item],
+      };
+      console.log("display,", updatedCharacter);
+      updateCharacter(updatedCharacter);
+      return updatedCharacter;
+    });
+  };
+
+  const deleteItem = (indexToDelete: number) => {
+    setDisplayCharacter((prevCharacter) => {
+      const updatedCharacter = {
+        ...prevCharacter,
+        items:
+          prevCharacter.items?.filter((_, index) => index !== indexToDelete) ||
+          [],
+      };
+      console.log("Updated character with deleted item:", updatedCharacter);
+      updateCharacter(updatedCharacter);
+      return updatedCharacter;
+    });
+  };
+
   //
   useEffect(() => {
     prevCharacterRef.current = displayCharacter;
@@ -70,85 +96,36 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
   }, [displayCharacter, updateCharacter]);
 
   return (
-    <div className="p-12 bg-gray-900 text-white rounded shadow-lg w-[95vw] h-[95vh] justify-around flex flex-col">
-      <header className="border-b border-gray-700 pb-4 mb-6">
-        <h1 className="text-4xl font-bold">{displayCharacter.name}</h1>
-        <div className="w-full flex flex-row justify-between items-center">
-          <p className="text-lg text-gray-400">
-            {displayCharacter.background} | Year: {displayCharacter.year}
-          </p>
-          <button
-            type="button"
-            className="border border-white px-4 py-2 rounded"
-            onClick={handleSubmit}
-          >
-            Save
-          </button>
-        </div>
-      </header>
+    <div className="p-12 text-white rounded shadow-lg justify-around flex flex-col border border-gray-900">
+      <Header
+        name={displayCharacter.name}
+        background={displayCharacter.background}
+        year={displayCharacter.year}
+        handleSubmit={handleSubmit}
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Attributes attributes={displayCharacter.attributes} />
+        <SkillsSection skills={displayCharacter.skills} />
+      </div>
+      <div className="flex flex-col gap-4 my-6">
+        <Edges edges={displayCharacter.edges} />
 
-      <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Attributes</h2>
-        <div className="flex flex-col gap-2 text-center">
-          {Object.entries(displayCharacter.attributes).map(([attr, value]) => (
-            <div
-              key={attr}
-              className="p-4 bg-gray-800 rounded flex flex-row justify-between"
-            >
-              <p className="font-bold capitalize text-xl">{attr}</p>
-              <p className="text-xl">d{value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Skills</h2>
-        <div className="grid grid-cols-3 gap-4">
-          {Object.entries(displayCharacter.skills).map(([skill, value]) => {
-            if (value !== ("d4" as any))
-              return (
-                <div
-                  key={skill}
-                  className="p-4 bg-gray-800 rounded flex flex-row justify-between"
-                >
-                  <p className="font-bold capitalize text-xl">
-                    {normalizeSkillName(skill)}
-                  </p>
-                  <p className="text-xl">{value}</p>
-                </div>
-              );
-          })}
-        </div>
-      </section>
-
-      <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Edges</h2>
-        <ul className="list-disc list-inside">
-          {displayCharacter.edges.map((edge, index) => (
-            <li key={index} className="text-xl">
-              <strong>{edge.name}</strong>: {edge.description}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Hindrances</h2>
-        <ul className="list-disc list-inside">
-          {displayCharacter.hindrances.map((hindrance, index) => (
-            <li key={index} className="text-xl">
-              <strong>{hindrance.name}</strong>: {hindrance.description}
-            </li>
-          ))}
-        </ul>
-      </section>
+        <Hindrances hindrances={displayCharacter.hindrances} />
+      </div>
 
       <Weapons
         displayCharacter={displayCharacter}
         addWeapon={addWeapon}
         deleteWeapon={deleteWeapon}
       />
+
+      {displayCharacter.items && (
+        <Items
+          displayCharacter={displayCharacter}
+          addItem={addItem}
+          deleteItem={deleteItem}
+        />
+      )}
 
       <Status
         displayCharacter={displayCharacter}

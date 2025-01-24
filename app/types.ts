@@ -19,6 +19,10 @@ export interface Character {
     name: string;
     damage: string;
   }[];
+  items: {
+    name: string;
+    description: string;
+  }[];
 }
 
 export type Edge = {

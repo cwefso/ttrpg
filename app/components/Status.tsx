@@ -14,7 +14,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
           <p className="font-bold">Wounds</p>
           <div className="flex justify-center items-center gap-2">
             <button
-              className="bg-red-800 px-2 py-1 rounded"
+              className="bg-red-800 px-2 sm:px-4 md:px-6 py-1 rounded"
               onClick={() =>
                 setDisplayCharacter((prev) => ({
                   ...prev,
@@ -24,9 +24,9 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
             >
               -
             </button>
-            <p className="text-xl">{displayCharacter.wounds}</p>
+            <p className="text-xl mx-4">{displayCharacter.wounds}</p>
             <button
-              className="bg-green-800 px-2 py-1 rounded"
+              className="bg-green-800 px-2 sm:px-4 md:px-6 py-1 rounded"
               onClick={() =>
                 setDisplayCharacter((prev) => ({
                   ...prev,
@@ -42,7 +42,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
           <p className="font-bold">Fatigue</p>
           <div className="flex justify-center items-center gap-2">
             <button
-              className="bg-red-800 px-2 py-1 rounded"
+              className="bg-red-800 px-2 sm:px-4 md:px-6 py-1 rounded"
               onClick={() =>
                 setDisplayCharacter((prev) => ({
                   ...prev,
@@ -52,9 +52,9 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
             >
               -
             </button>
-            <p className="text-xl">{displayCharacter.fatigue}</p>
+            <p className="text-xl mx-4">{displayCharacter.fatigue}</p>
             <button
-              className="bg-green-800 px-2 py-1 rounded"
+              className="bg-green-800 px-2 sm:px-4 md:px-6 py-1 rounded"
               onClick={() =>
                 setDisplayCharacter((prev) => ({
                   ...prev,
@@ -70,7 +70,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
           <p className="font-bold">Bennies</p>
           <div className="flex justify-center items-center gap-2">
             <button
-              className="bg-red-800 px-2 py-1 rounded"
+              className="bg-red-800 px-2 sm:px-4 md:px-6 py-1 rounded"
               onClick={() =>
                 setDisplayCharacter((prev) => ({
                   ...prev,
@@ -80,9 +80,9 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
             >
               -
             </button>
-            <p className="text-xl">{displayCharacter.bennies}</p>
+            <p className="text-xl mx-4">{displayCharacter.bennies}</p>
             <button
-              className="bg-green-800 px-2 py-1 rounded"
+              className="bg-green-800 px-2 sm:px-4 md:px-6 py-1 rounded"
               onClick={() =>
                 setDisplayCharacter((prev) => ({
                   ...prev,

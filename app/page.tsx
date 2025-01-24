@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import CharacterSheet from "./components/CharacterSheet";
 import { Character } from "./types";
 import { useRouter } from "next/navigation";
+import {
+  jackCharacter,
+  peggyCharacter,
+  mikeCharacter,
+  kristenCharacter,
+} from "./utils/mockCharacter";
 
 export default function Home() {
   const [character, setCharacter] = useState<Character | null>(null);
@@ -43,5 +49,5 @@ export default function Home() {
     return <p>Error: {error}</p>;
   }
 
-  return <div>{character && <CharacterSheet character={character} />}</div>;
+  return <>{character && <CharacterSheet character={character} />}</>;
 }
