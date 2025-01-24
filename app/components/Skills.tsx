@@ -16,7 +16,7 @@ export const SkillsSection = ({ skills }: SkillsProps) => {
       <h2 className="text-2xl font-semibold mb-2">Skills</h2>
       <div className="flex flex-col gap-2 text-center">
         {Object.entries(skills).map(([skill, value]) => {
-          if (value !== ("d4" as any))
+          if (value !== ("d4" as unknown))
             return (
               <div
                 key={skill}
