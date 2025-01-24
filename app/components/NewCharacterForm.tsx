@@ -5,16 +5,13 @@ import { edgesOptions } from "../utils/edges";
 import { hindrancesOptions } from "../utils/hindrances";
 import { Edge, Hindrance } from "../types";
 import { useUpdateCharacter } from "../hooks/useUpdateCharacter";
+import { useRouter } from "next/navigation";
+import { skillsOptions } from "../utils/skills";
 
 export default function NewCharacterForm() {
   const nameRef = useRef<HTMLInputElement>(null);
   const backgroundRef = useRef<HTMLInputElement>(null);
   const yearRef = useRef<HTMLInputElement>(null);
-  const agilityRef = useRef<HTMLInputElement>(null);
-  const smartsRef = useRef<HTMLInputElement>(null);
-  const spiritRef = useRef<HTMLInputElement>(null);
-  const strengthRef = useRef<HTMLInputElement>(null);
-  const vigorRef = useRef<HTMLInputElement>(null);
   const [edge1, setEdge1] = useState<Edge | null>(null);
   const [edge2, setEdge2] = useState<Edge | null>(null);
   const [hindrance1, setHindrance1] = useState<Hindrance | null>(null);
@@ -23,6 +20,7 @@ export default function NewCharacterForm() {
   const [edges, setEdges] = useState<Edge[]>([]);
   const [hindrances, setHindrances] = useState<Hindrance[]>([]);
   const { updateCharacter } = useUpdateCharacter();
+  const router = useRouter();
 
   const [attributes, setAttributes] = useState({
     agility: 0,
@@ -31,6 +29,51 @@ export default function NewCharacterForm() {
     strength: 0,
     vigor: 0,
   });
+
+  // Starting with 15 skill points
+  const [remainingSkillPoints, setRemainingSkillPoints] = useState(15);
+
+  const [skills, setSkills] = useState<Record<string, number>>(
+    skillsOptions.reduce((acc, skill) => {
+      acc[skill.name] = 4; // All skills start at d4
+      return acc;
+    }, {} as Record<string, number>)
+  );
+
+  const handleSkillChange = (skillName: string, newValue: number) => {
+    const linkedAttribute = skillsOptions.find(
+      (skill) => skill.name === skillName
+    )?.linkedAttribute;
+
+    const currentSkillValue = skills[skillName];
+    const attributeValue =
+      attributes[linkedAttribute as keyof typeof attributes];
+
+    // Calculate the cost to increase or decrease the skill
+    const costToIncrease =
+      newValue <= attributeValue
+        ? newValue - currentSkillValue // 1 point per level within attribute
+        : 2 * (newValue - attributeValue) +
+          (attributeValue - currentSkillValue); // 2 points above attribute
+
+    const costToDecrease =
+      currentSkillValue <= attributeValue
+        ? currentSkillValue - newValue // Refund 1 point per level within attribute
+        : 2 * (currentSkillValue - attributeValue) +
+          (attributeValue - newValue); // Refund 2 points above attribute
+
+    const cost =
+      newValue > currentSkillValue ? costToIncrease : -costToDecrease;
+
+    // Update the skill value and remaining points if within bounds
+    if (remainingSkillPoints - cost >= 0) {
+      setSkills((prevSkills) => ({
+        ...prevSkills,
+        [skillName]: newValue,
+      }));
+      setRemainingSkillPoints((prevPoints) => prevPoints - cost);
+    }
+  };
 
   const handleAttributeChange = (attr: string, value: number) => {
     setAttributes((prev) => ({
@@ -86,21 +129,21 @@ export default function NewCharacterForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const character = {
       name: nameRef.current?.value || "",
       background: backgroundRef.current?.value || "",
       year: yearRef.current?.value || "",
-      attributes: {
-        agility: attributes.agility || 0,
-        smarts: attributes.smarts || 0,
-        spirit: attributes.spirit || 0,
-        strength: attributes.strength || 0,
-        vigor: attributes.vigor || 0,
-      },
-      skills: {},
+      attributes,
+      skills: Object.entries(skills).reduce(
+        (acc, [key, value]) => ({
+          ...acc,
+          [key]: `d${value}`, // Convert skill value to dice format (e.g., `d4`, `d6`)
+        }),
+        {}
+      ),
       edges,
       hindrances,
       wounds: 0,
@@ -110,10 +153,11 @@ export default function NewCharacterForm() {
     };
     updateCharacter(character);
     console.log("Character Created:", character);
+    router.push("/");
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md text-black">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md text-black h-auto mt-[40vh] mb-10">
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
         Create New Character
       </h2>
@@ -199,6 +243,36 @@ export default function NewCharacterForm() {
           </div>
         ))}
 
+        {/* Skills */}
+        <h3 className="text-xl font-medium text-gray-800 mt-6 mb-4">Skills</h3>
+        <p className="text-sm text-gray-600 mb-4">
+          Remaining Skill Points: {remainingSkillPoints}
+        </p>
+        {skillsOptions.map((skill) => (
+          <div key={skill.name} className="mb-4">
+            <label
+              htmlFor={skill.name}
+              className="block text-sm font-medium text-gray-700"
+            >
+              {skill.name} (Linked Attribute: {skill.linkedAttribute}):
+            </label>
+            <select
+              id={skill.name}
+              value={skills[skill.name]}
+              onChange={(e) =>
+                handleSkillChange(skill.name, Number(e.target.value))
+              }
+              className="w-full px-4 py-2 mt-1 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {[4, 6, 8, 10, 12].map((num) => (
+                <option key={num} value={num}>
+                  {`d${num}`}
+                </option>
+              ))}
+            </select>
+          </div>
+        ))}
+
         {/* Edge 1 */}
         <h3 className="text-xl font-medium text-gray-800 mt-6 mb-4">Edge 1</h3>
         <div className="mb-4">
@@ -208,6 +282,7 @@ export default function NewCharacterForm() {
             onChange={handleEdge1Change}
             className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
+            <option value="">--Select--</option>
             {edgesOptions
               .filter((edge) => edge.name !== edge2?.name) // Remove the selected Edge 2 from Edge 1 list
               .map((edge, index) => (
@@ -227,6 +302,7 @@ export default function NewCharacterForm() {
             onChange={handleEdge2Change}
             className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
+            <option value="">--Select--</option>
             {edgesOptions
               .filter((edge) => edge.name !== edge1?.name) // Remove the selected Edge 1 from Edge 2 list
               .map((edge, index) => (
@@ -248,6 +324,7 @@ export default function NewCharacterForm() {
             onChange={handleHindrance1Change}
             className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
+            <option value="">--Select--</option>
             {hindrancesOptions
               .filter((hindrance) => hindrance.name !== hindrance2?.name) // Remove the selected Hindrances 2 from Hindrances 1 list
               .map((hindrance, index) => (
@@ -269,6 +346,7 @@ export default function NewCharacterForm() {
             onChange={handleHindrance2Change}
             className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
+            <option value="">--Select--</option>
             {hindrancesOptions
               .filter((hindrance) => hindrance.name !== hindrance1?.name) // Remove the selected Hindrances 1 from Hindrances 2 list
               .map((hindrance, index) => (

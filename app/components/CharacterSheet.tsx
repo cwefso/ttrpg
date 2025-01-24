@@ -69,8 +69,6 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
     };
   }, [displayCharacter, updateCharacter]);
 
-  console.log(character);
-
   return (
     <div className="p-12 bg-gray-900 text-white rounded shadow-lg w-[95vw] h-[95vh] justify-around flex flex-col">
       <header className="border-b border-gray-700 pb-4 mb-6">
@@ -91,7 +89,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold mb-2">Attributes</h2>
-        <div className="grid grid-cols-5 gap-4 text-center">
+        <div className="flex flex-col gap-2 text-center">
           {Object.entries(displayCharacter.attributes).map(([attr, value]) => (
             <div
               key={attr}
@@ -107,17 +105,20 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
       <section className="mb-6">
         <h2 className="text-2xl font-semibold mb-2">Skills</h2>
         <div className="grid grid-cols-3 gap-4">
-          {Object.entries(displayCharacter.skills).map(([skill, value]) => (
-            <div
-              key={skill}
-              className="p-4 bg-gray-800 rounded flex flex-row justify-between"
-            >
-              <p className="font-bold capitalize text-xl">
-                {normalizeSkillName(skill)}
-              </p>
-              <p className="text-xl">d{value}</p>
-            </div>
-          ))}
+          {Object.entries(displayCharacter.skills).map(([skill, value]) => {
+            if (value !== ("d4" as any))
+              return (
+                <div
+                  key={skill}
+                  className="p-4 bg-gray-800 rounded flex flex-row justify-between"
+                >
+                  <p className="font-bold capitalize text-xl">
+                    {normalizeSkillName(skill)}
+                  </p>
+                  <p className="text-xl">{value}</p>
+                </div>
+              );
+          })}
         </div>
       </section>
 

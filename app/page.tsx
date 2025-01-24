@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import CharacterSheet from "./components/CharacterSheet";
 import { Character } from "./types";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [character, setCharacter] = useState<Character | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCharacter = async () => {
@@ -17,6 +19,9 @@ export default function Home() {
           throw new Error(`Failed to fetch character: ${response.statusText}`);
         }
         const data = await response.json();
+        if (data.character == null) {
+          router.push("/new-character");
+        }
         setCharacter(data.character);
       } catch (err) {
         setError(
