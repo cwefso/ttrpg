@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import CharacterSheet from "./components/CharacterSheet";
 import { Character } from "./types";
 import { useRouter } from "next/navigation";
-import Container from "./components/DiceRoller";
 
 export default function Home() {
   const [character, setCharacter] = useState<Character | null>(null);
