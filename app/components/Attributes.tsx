@@ -16,7 +16,7 @@ export const Attributes = ({ attributes }: AttributesProps) => {
         {Object.entries(attributes).map(([attr, value]) => (
           <div
             key={attr}
-            className="p-4 bg-gray-800 rounded flex flex-row justify-between"
+            className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-row justify-between"
           >
             <p className="font-bold capitalize text-xl">{attr}</p>
             {<p className="text-xl">d{value}</p>}

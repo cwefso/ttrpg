@@ -43,7 +43,7 @@ const Items = ({ displayCharacter, addItem, deleteItem }: ItemsProps) => {
         {displayCharacter.items.map((item, index) => (
           <div
             key={index}
-            className="p-4 bg-gray-800 rounded flex flex-col items-start gap-2"
+            className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-col items-start gap-2"
           >
             <div className="flex flex-row justify-between items-center w-full">
               <p className="font-bold text-xl">{item.name}</p>
@@ -55,21 +55,21 @@ const Items = ({ displayCharacter, addItem, deleteItem }: ItemsProps) => {
               </button>
             </div>
             <p className="text-lg">
-              Damage: <span>{item.description}</span>
+              Description: <span>{item.description}</span>
             </p>
           </div>
         ))}
       </div>
       {!isAdding ? (
         <button
-          className="p-4 bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
+          className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
           onClick={() => setIsAdding(true)}
         >
           +
         </button>
       ) : (
         <form
-          className="p-4 bg-gray-800 rounded col-span-3 flex flex-col gap-2"
+          className="p-4 bg-gray-100 dark:bg-gray-800 rounded col-span-3 flex flex-col gap-2"
           onSubmit={(e) => {
             e.preventDefault();
             handleAddItem();
@@ -83,7 +83,7 @@ const Items = ({ displayCharacter, addItem, deleteItem }: ItemsProps) => {
           />
           <input
             type="text"
-            placeholder="Item Damage"
+            placeholder="Item Description"
             ref={descriptionRef}
             className="p-2 rounded bg-gray-700 text-white"
           />

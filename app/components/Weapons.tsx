@@ -47,7 +47,7 @@ const Weapons = ({
         {displayCharacter.weapons.map((weapon, index) => (
           <div
             key={index}
-            className="p-4 bg-gray-800 rounded flex flex-col items-start gap-2"
+            className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-col items-start gap-2"
           >
             <div className="flex flex-row justify-between items-center w-full">
               <p className="font-bold text-xl">{weapon.name}</p>
@@ -66,14 +66,14 @@ const Weapons = ({
       </div>
       {!isAdding ? (
         <button
-          className="p-4 bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
+          className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
           onClick={() => setIsAdding(true)}
         >
           +
         </button>
       ) : (
         <form
-          className="p-4 bg-gray-800 rounded col-span-3 flex flex-col gap-2"
+          className="p-4 bg-gray-100 dark:bg-gray-800 rounded col-span-3 flex flex-col gap-2"
           onSubmit={(e) => {
             e.preventDefault();
             handleAddWeapon();

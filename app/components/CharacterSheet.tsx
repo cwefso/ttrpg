@@ -11,20 +11,17 @@ import { Header } from "./Header";
 import { Edges } from "./Edges";
 import { Hindrances } from "./Hindrances";
 import Items from "./Items";
+import Container from "./DiceRoller";
+import Notes from "./Notes";
 
 interface CharacterSheetProps {
   character: Character;
 }
 
-const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
+const CharacterSheet = ({ character }: CharacterSheetProps) => {
   const [displayCharacter, setDisplayCharacter] = useState(character);
   const { updateCharacter } = useUpdateCharacter();
   const prevCharacterRef = useRef<Character | null>(null);
-
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    updateCharacter(displayCharacter);
-  };
 
   const addWeapon = (weapon: { name: string; damage: string }) => {
     setDisplayCharacter((prevCharacter) => {
@@ -96,41 +93,45 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
   }, [displayCharacter, updateCharacter]);
 
   return (
-    <div className="p-12 text-white rounded shadow-lg justify-around flex flex-col border border-gray-900">
-      <Header
-        name={displayCharacter.name}
-        background={displayCharacter.background}
-        year={displayCharacter.year}
-        handleSubmit={handleSubmit}
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Attributes attributes={displayCharacter.attributes} />
-        <SkillsSection skills={displayCharacter.skills} />
-      </div>
-      <div className="flex flex-col gap-4 my-6">
-        <Edges edges={displayCharacter.edges} />
-
-        <Hindrances hindrances={displayCharacter.hindrances} />
-      </div>
-
-      <Weapons
-        displayCharacter={displayCharacter}
-        addWeapon={addWeapon}
-        deleteWeapon={deleteWeapon}
-      />
-
-      {displayCharacter.items && (
-        <Items
-          displayCharacter={displayCharacter}
-          addItem={addItem}
-          deleteItem={deleteItem}
+    <div className="p-12 rounded shadow-lg justify-around flex flex-col xl:flex-row xl:gap-8 border border-gray-900">
+      <section>
+        <Header
+          name={displayCharacter.name}
+          background={displayCharacter.background}
+          year={displayCharacter.year}
         />
-      )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Attributes attributes={displayCharacter.attributes} />
+          <SkillsSection skills={displayCharacter.skills} />
+        </div>
+        <div className="flex flex-col gap-4 my-6">
+          <Edges edges={displayCharacter.edges} />
 
-      <Status
-        displayCharacter={displayCharacter}
-        setDisplayCharacter={setDisplayCharacter}
-      />
+          <Hindrances hindrances={displayCharacter.hindrances} />
+          <Notes character={displayCharacter} />
+        </div>
+      </section>
+      <section>
+        <Weapons
+          displayCharacter={displayCharacter}
+          addWeapon={addWeapon}
+          deleteWeapon={deleteWeapon}
+        />
+
+        {displayCharacter.items && (
+          <Items
+            displayCharacter={displayCharacter}
+            addItem={addItem}
+            deleteItem={deleteItem}
+          />
+        )}
+
+        <Status
+          displayCharacter={displayCharacter}
+          setDisplayCharacter={setDisplayCharacter}
+        />
+        <Container />
+      </section>
     </div>
   );
 };

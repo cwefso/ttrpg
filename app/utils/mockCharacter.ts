@@ -49,6 +49,7 @@ export const jackCharacter: Character = {
     },
   ],
   items: [],
+  notes: "",
 };
 
 export const mikeCharacter: Character = {
@@ -99,6 +100,7 @@ export const mikeCharacter: Character = {
     },
   ],
   items: [],
+  notes: "",
 };
 
 export const peggyCharacter: Character = {
@@ -150,6 +152,7 @@ export const peggyCharacter: Character = {
     },
   ],
   items: [],
+  notes: "",
 };
 
 export const kristenCharacter: Character = {
@@ -203,4 +206,5 @@ export const kristenCharacter: Character = {
     },
   ],
   items: [],
+  notes: "",
 };

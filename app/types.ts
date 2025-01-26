@@ -23,6 +23,7 @@ export interface Character {
     name: string;
     description: string;
   }[];
+  notes?: string;
 }
 
 export type Edge = {
