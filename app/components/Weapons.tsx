@@ -52,7 +52,7 @@ const Weapons = ({
             <div className="flex flex-row justify-between items-center w-full">
               <p className="font-bold text-xl">{weapon.name}</p>
               <button
-                className="hover:text-red-800 hover:bg-white border border:white px-2 text-xl rounded"
+                className="hover:text-red-800 hover:bg-white border border:white px-2 mx-2 text-xl rounded"
                 onClick={(e) => handleDeleteWeapon(e, index)}
               >
                 X
