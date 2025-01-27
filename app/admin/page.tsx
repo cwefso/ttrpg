@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import CharacterSheet from "./components/CharacterSheet";
-import { useCharacters } from "./hooks/useCharacters"; // Import the new hook
+import CharacterSheet from "../components/CharacterSheet";
+import { useCharacters } from "../hooks/useCharacters"; // Import the new hook
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div>
       <h1>Character Sheets</h1>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+      <div className="grid grid-cols-2 gap-8">
         {characters.map((character, index) => (
           <CharacterSheet key={index} character={character} />
         ))}
