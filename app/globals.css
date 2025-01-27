@@ -4,17 +4,9 @@
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --text-color: #000000; /* Black text in light mode */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --text-color: #ffffff; /* White text in dark mode */
-  }
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --text-color: #ffffff;
 }
 
 body {
