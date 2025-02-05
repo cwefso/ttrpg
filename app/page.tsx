@@ -1,20 +1,39 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CharacterSheet from "./components/CharacterSheet";
-import { useCharacters } from "./hooks/useCharacters"; // Import the new hook
+import { Character } from "./types";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const { characters, loading, error } = useCharacters(); // Use the new hook
+  const [character, setCharacter] = useState<Character | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // Redirect to the new character page if no characters are found
   useEffect(() => {
-    if (!loading && characters.length === 0) {
-      router.push("/new-character");
-    }
-  }, [characters, loading, router]);
+    const fetchCharacter = async () => {
+      try {
+        const response = await fetch("/api/userCharacter");
+        if (!response.ok) {
+          throw new Error(`Failed to fetch character: ${response.statusText}`);
+        }
+        const data = await response.json();
+        if (data.character == null) {
+          router.push("/new-character");
+        }
+        setCharacter(data.character);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "An unexpected error occurred"
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCharacter();
+  }, [router]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -24,14 +43,5 @@ export default function Home() {
     return <p>Error: {error}</p>;
   }
 
-  return (
-    <div>
-      <h1>Character Sheets</h1>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-        {characters.map((character, index) => (
-          <CharacterSheet key={index} character={character} />
-        ))}
-      </div>
-    </div>
-  );
+  return <>{character && <CharacterSheet character={character} />}</>;
 }
