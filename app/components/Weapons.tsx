@@ -51,7 +51,7 @@ const Weapons = ({
             key={index}
             className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-col items-start gap-2"
           >
-            <div className="flex flex-row justify-between items-center w-full ">
+            <div className="flex flex-row justify-between items-center w-full">
               <p className="font-bold text-xl">{weapon.name}</p>
               {!isAdminPage && (
                 <button
