@@ -5,9 +5,15 @@ interface ItemsProps {
   displayCharacter: Character;
   addItem: (item: { name: string; description: string }) => void;
   deleteItem: (indexToDelete: number) => void;
+  isAdminPage: boolean;
 }
 
-const Items = ({ displayCharacter, addItem, deleteItem }: ItemsProps) => {
+const Items = ({
+  displayCharacter,
+  addItem,
+  deleteItem,
+  isAdminPage,
+}: ItemsProps) => {
   const [isAdding, setIsAdding] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
@@ -47,12 +53,14 @@ const Items = ({ displayCharacter, addItem, deleteItem }: ItemsProps) => {
           >
             <div className="flex flex-row justify-between items-center w-full">
               <p className="font-bold text-xl">{item.name}</p>
-              <button
-                className="hover:text-red-800 hover:bg-white border border:white px-2 mx-2 text-xl rounded"
-                onClick={(e) => handleDeleteItem(e, index)}
-              >
-                X
-              </button>
+              {!isAdminPage && (
+                <button
+                  className="hover:text-red-800 hover:bg-white border border:white px-2 mx-2 text-xl rounded"
+                  onClick={(e) => handleDeleteItem(e, index)}
+                >
+                  X
+                </button>
+              )}
             </div>
             <p className="text-lg">
               Description: <span>{item.description}</span>
@@ -60,49 +68,53 @@ const Items = ({ displayCharacter, addItem, deleteItem }: ItemsProps) => {
           </div>
         ))}
       </div>
-      {!isAdding ? (
-        <button
-          className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
-          onClick={() => setIsAdding(true)}
-        >
-          +
-        </button>
-      ) : (
-        <form
-          className="p-4 bg-gray-100 dark:bg-gray-800 rounded col-span-3 flex flex-col gap-2"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleAddItem();
-          }}
-        >
-          <input
-            type="text"
-            placeholder="Item Name"
-            ref={nameRef}
-            className="p-2 rounded bg-gray-700 text-white"
-          />
-          <input
-            type="text"
-            placeholder="Item Description"
-            ref={descriptionRef}
-            className="p-2 rounded bg-gray-700 text-white"
-          />
-          <div className="flex justify-between">
+      {!isAdminPage && (
+        <>
+          {!isAdding ? (
             <button
-              type="submit"
-              className="px-4 py-2 bg-green-600 rounded text-white"
+              className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
+              onClick={() => setIsAdding(true)}
             >
-              Add
+              +
             </button>
-            <button
-              type="button"
-              className="px-4 py-2 bg-red-600 rounded text-white"
-              onClick={() => setIsAdding(false)}
+          ) : (
+            <form
+              className="p-4 bg-gray-100 dark:bg-gray-800 rounded col-span-3 flex flex-col gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleAddItem();
+              }}
             >
-              Cancel
-            </button>
-          </div>
-        </form>
+              <input
+                type="text"
+                placeholder="Item Name"
+                ref={nameRef}
+                className="p-2 rounded bg-gray-700 text-white"
+              />
+              <input
+                type="text"
+                placeholder="Item Description"
+                ref={descriptionRef}
+                className="p-2 rounded bg-gray-700 text-white"
+              />
+              <div className="flex justify-between">
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-green-600 rounded text-white"
+                >
+                  Add
+                </button>
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-red-600 rounded text-white"
+                  onClick={() => setIsAdding(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+        </>
       )}
     </section>
   );

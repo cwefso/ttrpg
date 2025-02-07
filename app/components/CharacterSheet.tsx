@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Character } from "../types";
 import { useUpdateCharacter } from "../hooks/useUpdateCharacter";
 import Weapons from "./Weapons";
@@ -22,6 +23,8 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
   const [displayCharacter, setDisplayCharacter] = useState(character);
   const { updateCharacter } = useUpdateCharacter();
   const prevCharacterRef = useRef<Character | null>(null);
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith("/admin");
 
   const addWeapon = (weapon: { name: string; damage: string }) => {
     setDisplayCharacter((prevCharacter) => {
@@ -29,7 +32,6 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
         ...prevCharacter,
         weapons: [...prevCharacter.weapons, weapon],
       };
-      console.log("display,", updatedCharacter);
       updateCharacter(updatedCharacter);
       return updatedCharacter;
     });
@@ -44,7 +46,6 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
             (_, index) => index !== indexToDelete
           ),
         };
-        console.log("display,", updatedCharacter);
         updateCharacter(updatedCharacter);
         return updatedCharacter;
       });
@@ -58,7 +59,6 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
         ...prevCharacter,
         items: [...prevCharacter.items, item],
       };
-      console.log("display,", updatedCharacter);
       updateCharacter(updatedCharacter);
       return updatedCharacter;
     });
@@ -72,16 +72,13 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
           prevCharacter.items?.filter((_, index) => index !== indexToDelete) ||
           [],
       };
-      console.log("Updated character with deleted item:", updatedCharacter);
       updateCharacter(updatedCharacter);
       return updatedCharacter;
     });
   };
 
-  //
   useEffect(() => {
     prevCharacterRef.current = displayCharacter;
-
     return () => {
       if (
         prevCharacterRef.current &&
@@ -93,7 +90,7 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
   }, [displayCharacter, updateCharacter]);
 
   return (
-    <div className="p-12 rounded shadow-lg justify-around flex flex-col xl:flex-row xl:gap-8 border border-gray-900">
+    <div className="p-12 rounded shadow-lg justify-between flex flex-col xl:flex-row xl:gap-8 border border-gray-900">
       <section>
         <Header
           name={displayCharacter.name}
@@ -106,9 +103,8 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
         </div>
         <div className="flex flex-col gap-4 my-6">
           <Edges edges={displayCharacter.edges} />
-
           <Hindrances hindrances={displayCharacter.hindrances} />
-          <Notes character={displayCharacter} />
+          {!isAdminPage && <Notes character={displayCharacter} />}
         </div>
       </section>
       <section>
@@ -116,6 +112,7 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
           displayCharacter={displayCharacter}
           addWeapon={addWeapon}
           deleteWeapon={deleteWeapon}
+          isAdminPage={isAdminPage}
         />
 
         {displayCharacter.items && (
@@ -123,14 +120,17 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
             displayCharacter={displayCharacter}
             addItem={addItem}
             deleteItem={deleteItem}
+            isAdminPage={isAdminPage}
           />
         )}
 
-        <Status
-          displayCharacter={displayCharacter}
-          setDisplayCharacter={setDisplayCharacter}
-        />
-        <Container />
+        {!isAdminPage && (
+          <Status
+            displayCharacter={displayCharacter}
+            setDisplayCharacter={setDisplayCharacter}
+          />
+        )}
+        {!isAdminPage && <Container />}
       </section>
     </div>
   );
