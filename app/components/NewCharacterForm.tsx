@@ -158,7 +158,7 @@ export default function NewCharacterForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md text-black h-auto mt-[40vh] mb-10">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md text-gray-800 h-auto mt-[40vh] mb-10">
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
         Create New Character
       </h2>
@@ -175,7 +175,7 @@ export default function NewCharacterForm() {
             id="name"
             type="text"
             ref={nameRef}
-            className="w-full px-4 py-2 mt-1 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-1 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
@@ -192,7 +192,7 @@ export default function NewCharacterForm() {
             id="background"
             type="text"
             ref={backgroundRef}
-            className="w-full px-4 py-2 mt-1 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-1 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
@@ -209,7 +209,7 @@ export default function NewCharacterForm() {
             id="year"
             type="text"
             ref={yearRef}
-            className="w-full px-4 py-2 mt-1 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-1 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
@@ -232,7 +232,7 @@ export default function NewCharacterForm() {
               onChange={(e) =>
                 handleAttributeChange(attr, Number(e.target.value))
               }
-              className="w-full px-4 py-2 mt-1 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 mt-1 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">--Attribute Value--</option>
               {[4, 6, 8, 10, 12].map((num) => (
@@ -263,7 +263,7 @@ export default function NewCharacterForm() {
               onChange={(e) =>
                 handleSkillChange(skill.name, Number(e.target.value))
               }
-              className="w-full px-4 py-2 mt-1 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 mt-1 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {[4, 6, 8, 10, 12].map((num) => (
                 <option key={num} value={num}>

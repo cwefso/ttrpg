@@ -42,13 +42,13 @@ const Items = ({
   return (
     <section className="mb-6">
       <h2 className="text-2xl font-semibold mb-2">Items</h2>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 my-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 my-4 text-gray-800 dark:text-gray-100">
         {displayCharacter.items.map((item, index) => (
           <div
             key={index}
             className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-col items-start gap-2"
           >
-            <div className="flex flex-row justify-between items-center w-full">
+            <div className="flex flex-row justify-between items-center w-full ">
               <p className="font-bold text-xl">{item}</p>
               {!isAdminPage && (
                 <button
@@ -66,7 +66,7 @@ const Items = ({
         <>
           {!isAdding ? (
             <button
-              className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
+              className="p-4 bg-gray-100 text-gray-800 dark:text-gray-100 dark:bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
               onClick={() => setIsAdding(true)}
             >
               +

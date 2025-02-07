@@ -20,7 +20,7 @@ export const SkillsSection = ({ skills }: SkillsProps) => {
             return (
               <div
                 key={skill}
-                className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-row justify-between"
+                className="p-4 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded flex flex-row justify-between"
               >
                 <p className="font-bold capitalize text-xl">
                   {normalizeSkillName(skill)}

@@ -9,9 +9,11 @@ interface StatusProps {
 const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
   const { updateCharacter } = useUpdateCharacter();
   return (
-    <section className="mb-6">
+    <section className="mb-6 text-gray-800 dark:text-gray-100">
       <div className="flex w-full justify-between items-center mb-2">
-        <h2 className="text-2xl font-semibold mb-2">Status</h2>
+        <h2 className="text-2xl text-gray-100 dark:text-gray-800 font-semibold mb-2">
+          Status
+        </h2>
       </div>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 my-4 text-center">
         <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded">

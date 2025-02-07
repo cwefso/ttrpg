@@ -45,7 +45,7 @@ const Weapons = ({
   return (
     <section className="mb-6">
       <h2 className="text-2xl font-semibold mb-2">Weapons</h2>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 my-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 my-4 text-gray-800 dark:text-gray-100">
         {displayCharacter.weapons.map((weapon, index) => (
           <div
             key={index}
@@ -72,7 +72,7 @@ const Weapons = ({
         <>
           {!isAdding ? (
             <button
-              className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex justify-center items-center text-4xl w-full"
+              className="p-4 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded flex justify-center items-center text-4xl w-full"
               onClick={() => setIsAdding(true)}
             >
               +
