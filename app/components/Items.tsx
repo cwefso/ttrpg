@@ -16,7 +16,6 @@ const Items = ({
 }: ItemsProps) => {
   const [isAdding, setIsAdding] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);
-  const descriptionRef = useRef<HTMLInputElement>(null);
 
   const handleAddItem = () => {
     const newItem = nameRef.current?.value || "";
