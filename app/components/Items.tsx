@@ -3,7 +3,7 @@ import { Character } from "../types";
 
 interface ItemsProps {
   displayCharacter: Character;
-  addItem: (item: { name: string; description: string }) => void;
+  addItem: (item: string) => void;
   deleteItem: (indexToDelete: number) => void;
   isAdminPage: boolean;
 }
@@ -19,18 +19,14 @@ const Items = ({
   const descriptionRef = useRef<HTMLInputElement>(null);
 
   const handleAddItem = () => {
-    const newItem = {
-      name: nameRef.current?.value || "",
-      description: descriptionRef.current?.value || "",
-    };
+    const newItem = nameRef.current?.value || "";
 
-    if (!newItem.name || !newItem.description) {
+    if (!newItem) {
       alert("Both fields are required.");
       return;
     }
     addItem(newItem);
     if (nameRef.current) nameRef.current.value = "";
-    if (descriptionRef.current) descriptionRef.current.value = "";
     setIsAdding(false);
   };
 
@@ -42,6 +38,8 @@ const Items = ({
     deleteItem(index);
   };
 
+  console.log(displayCharacter);
+
   return (
     <section className="mb-6">
       <h2 className="text-2xl font-semibold mb-2">Items</h2>
@@ -52,7 +50,7 @@ const Items = ({
             className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-col items-start gap-2"
           >
             <div className="flex flex-row justify-between items-center w-full">
-              <p className="font-bold text-xl">{item.name}</p>
+              <p className="font-bold text-xl">{item}</p>
               {!isAdminPage && (
                 <button
                   className="hover:text-red-800 hover:bg-white border border:white px-2 mx-2 text-xl rounded"
@@ -62,9 +60,6 @@ const Items = ({
                 </button>
               )}
             </div>
-            <p className="text-lg">
-              Description: <span>{item.description}</span>
-            </p>
           </div>
         ))}
       </div>
@@ -89,12 +84,6 @@ const Items = ({
                 type="text"
                 placeholder="Item Name"
                 ref={nameRef}
-                className="p-2 rounded bg-gray-700 text-white"
-              />
-              <input
-                type="text"
-                placeholder="Item Description"
-                ref={descriptionRef}
                 className="p-2 rounded bg-gray-700 text-white"
               />
               <div className="flex justify-between">

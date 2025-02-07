@@ -53,7 +53,7 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
     [updateCharacter]
   );
 
-  const addItem = (item: { name: string; description: string }) => {
+  const addItem = (item: string) => {
     setDisplayCharacter((prevCharacter) => {
       const updatedCharacter = {
         ...prevCharacter,

@@ -19,10 +19,7 @@ export interface Character {
     name: string;
     damage: string;
   }[];
-  items: {
-    name: string;
-    description: string;
-  }[];
+  items: string[];
   notes?: string;
 }
 

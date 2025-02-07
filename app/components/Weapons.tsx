@@ -45,13 +45,13 @@ const Weapons = ({
   return (
     <section className="mb-6">
       <h2 className="text-2xl font-semibold mb-2">Weapons</h2>
-      <div className="grid gap-4 my-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 my-4">
         {displayCharacter.weapons.map((weapon, index) => (
           <div
             key={index}
             className="p-4 bg-gray-100 dark:bg-gray-800 rounded flex flex-col items-start gap-2"
           >
-            <div className="flex flex-row justify-between items-center ">
+            <div className="flex flex-row justify-between items-center w-full ">
               <p className="font-bold text-xl">{weapon.name}</p>
               {!isAdminPage && (
                 <button
