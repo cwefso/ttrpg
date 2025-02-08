@@ -34,9 +34,7 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2">
         {uniqueCharacters.map((character, index) => (
           <>
-            {index !== 4 && (
-              <CharacterSheet key={index} character={character} />
-            )}
+            {index < 3 && <CharacterSheet key={index} character={character} />}
           </>
         ))}
       </div>
