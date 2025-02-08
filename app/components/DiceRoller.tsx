@@ -64,11 +64,11 @@ const Container = () => {
     setResult(total);
   };
 
-  const handleMultiplierChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setMultiplier(Number(event.target.value));
-  };
+  // const handleMultiplierChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setMultiplier(Number(event.target.value));
+  // };
 
   return (
     <div className="h-auto flex flex-col items-center justify-center p-4">
