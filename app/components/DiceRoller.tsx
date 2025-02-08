@@ -49,7 +49,7 @@ const Result = ({ result }: ResultProps) => {
 };
 
 const Container = () => {
-  const [multiplier, setMultiplier] = useState<number>(1);
+  // const [multiplier, setMultiplier] = useState<number>(1);
   const [result, setResult] = useState<number>(0);
   const dice: number[] = [4, 6, 8, 10, 12, 20];
 
@@ -57,9 +57,7 @@ const Container = () => {
     let total = 0;
     const random = () => Math.floor(Math.random() * value) + 1;
 
-    for (let i = 0; i < multiplier; i++) {
-      total += random();
-    }
+    total += random();
 
     setResult(total);
   };
