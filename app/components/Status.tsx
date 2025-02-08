@@ -11,7 +11,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
   return (
     <section className="mb-6 text-gray-800 dark:text-gray-100">
       <div className="flex w-full justify-between items-center mb-2">
-        <h2 className="text-2xl text-gray-100 dark:text-gray-800 font-semibold mb-2">
+        <h2 className="text-2xl text-gray-800 dark:text-gray-100 font-semibold mb-2">
           Status
         </h2>
       </div>
