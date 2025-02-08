@@ -16,25 +16,25 @@ const Die = ({ value, onClick }: DieProps) => {
   );
 };
 
-interface MultiplierProps {
-  value: number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+// interface MultiplierProps {
+//   value: number;
+//   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+// }
 
-const Multiplier = ({ value, onChange }: MultiplierProps) => {
-  return (
-    <input
-      type="number"
-      pattern="[0-9]*"
-      min="1"
-      max="10"
-      placeholder="1"
-      value={value}
-      onChange={onChange}
-      className="w-24 text-center text-xl p-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-none bg-white text-gray-800"
-    />
-  );
-};
+// const Multiplier = ({ value, onChange }: MultiplierProps) => {
+//   return (
+//     <input
+//       type="number"
+//       pattern="[0-9]*"
+//       min="1"
+//       max="10"
+//       placeholder="1"
+//       value={value}
+//       onChange={onChange}
+//       className="w-24 text-center text-xl p-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-none bg-white text-gray-800"
+//     />
+//   );
+// };
 
 interface ResultProps {
   result: number;
@@ -73,10 +73,10 @@ const Container = () => {
   return (
     <div className="h-auto flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md mx-auto">
-        <div className="text-center pb-6">
+        {/* <div className="text-center pb-6">
           <p className="m-4">Number of Dice</p>
           <Multiplier value={multiplier} onChange={handleMultiplierChange} />
-        </div>
+        </div> */}
         <div className="text-center mb-6">
           <div className="flex flex-wrap justify-center">
             {dice.map((dieValue) => (
