@@ -140,7 +140,7 @@ export default function NewCharacterForm() {
       skills: Object.entries(skills).reduce(
         (acc, [key, value]) => ({
           ...acc,
-          [key]: `d${value}`, // Convert skill value to dice format (e.g., `d4`, `d6`)
+          [key]: ` ${value}`, // Convert skill value to dice format (e.g., `d4`, `d6`)
         }),
         {}
       ),
@@ -237,7 +237,7 @@ export default function NewCharacterForm() {
               <option value="">--Attribute Value--</option>
               {[4, 6, 8, 10, 12].map((num) => (
                 <option key={num} value={num}>
-                  {`d${num}`}
+                  {` ${num}`}
                 </option>
               ))}
             </select>
@@ -267,7 +267,7 @@ export default function NewCharacterForm() {
             >
               {[4, 6, 8, 10, 12].map((num) => (
                 <option key={num} value={num}>
-                  {`d${num}`}
+                  {` ${num}`}
                 </option>
               ))}
             </select>
