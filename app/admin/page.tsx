@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div>
       <h1>Character Sheets</h1>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2">
         {uniqueCharacters.map((character, index) => (
           <CharacterSheet key={index} character={character} />
         ))}
