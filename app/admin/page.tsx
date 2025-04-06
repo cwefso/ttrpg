@@ -23,16 +23,18 @@ export default function Home() {
     return <p>Error: {error}</p>;
   }
 
-  // Remove duplicates based on name (if name is unique)
-  const uniqueCharacters = Array.from(
-    new Map(characters.map((char) => [char.name, char])).values()
-  );
+  // // Remove duplicates based on name (if name is unique)
+  // const uniqueCharacters = Array.from(
+  //   new Map(characters.map((char) => [char.name, char])).values()
+  // );
+
+  console.log("characters", characters);
 
   return (
     <div>
       <h1>Character Sheets</h1>
       <div className="grid grid-cols-1 md:grid-cols-2">
-        {uniqueCharacters.map((character, index) => (
+        {characters.map((character, index) => (
           <>
             {index < 4 && <CharacterSheet key={index} character={character} />}
           </>
