@@ -24,7 +24,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
               onClick={() => {
                 setDisplayCharacter((prev) => ({
                   ...prev,
-                  wounds: Math.max(0, prev.wounds - 1),
+                  wounds: Math.max(0, (prev.wounds -= 1)),
                 }));
                 updateCharacter(displayCharacter);
               }}
@@ -37,7 +37,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
               onClick={() => {
                 setDisplayCharacter((prev) => ({
                   ...prev,
-                  wounds: prev.wounds + 1,
+                  wounds: (prev.wounds += 1),
                 }));
                 updateCharacter(displayCharacter);
               }}
@@ -55,7 +55,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
                 {
                   setDisplayCharacter((prev) => ({
                     ...prev,
-                    fatigue: Math.max(0, prev.fatigue - 1),
+                    fatigue: Math.max(0, (prev.fatigue -= 1)),
                   }));
                   updateCharacter(displayCharacter);
                 }
@@ -70,7 +70,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
                 {
                   setDisplayCharacter((prev) => ({
                     ...prev,
-                    fatigue: Math.max(0, prev.fatigue + 1),
+                    fatigue: Math.max(0, (prev.fatigue += 1)),
                   }));
                   updateCharacter(displayCharacter);
                 }
@@ -88,7 +88,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
               onClick={() => {
                 setDisplayCharacter((prev) => ({
                   ...prev,
-                  bennies: Math.max(0, prev.bennies - 1),
+                  bennies: Math.max(0, (prev.bennies -= 1)),
                 }));
                 updateCharacter(displayCharacter);
               }}
@@ -101,7 +101,7 @@ const Status = ({ displayCharacter, setDisplayCharacter }: StatusProps) => {
               onClick={() => {
                 setDisplayCharacter((prev) => ({
                   ...prev,
-                  bennies: Math.max(0, prev.bennies + 1),
+                  bennies: Math.max(0, (prev.bennies += 1)),
                 }));
                 updateCharacter(displayCharacter);
               }}
