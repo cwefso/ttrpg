@@ -104,7 +104,7 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
         <div className="flex flex-col gap-4 my-6">
           <Edges edges={displayCharacter.edges} />
           <Hindrances hindrances={displayCharacter.hindrances} />
-          {!isAdminPage && <Notes character={displayCharacter} />}
+          <Notes character={displayCharacter} />
         </div>
       </section>
       <section>
@@ -115,22 +115,19 @@ const CharacterSheet = ({ character }: CharacterSheetProps) => {
           isAdminPage={isAdminPage}
         />
 
-        {displayCharacter.items && (
-          <Items
-            displayCharacter={displayCharacter}
-            addItem={addItem}
-            deleteItem={deleteItem}
-            isAdminPage={isAdminPage}
-          />
-        )}
+        <Items
+          displayCharacter={displayCharacter}
+          addItem={addItem}
+          deleteItem={deleteItem}
+          isAdminPage={isAdminPage}
+        />
 
-        {!isAdminPage && (
-          <Status
-            displayCharacter={displayCharacter}
-            setDisplayCharacter={setDisplayCharacter}
-          />
-        )}
-        {!isAdminPage && <Container />}
+        <Status
+          displayCharacter={displayCharacter}
+          setDisplayCharacter={setDisplayCharacter}
+        />
+
+        <Container />
       </section>
     </div>
   );
