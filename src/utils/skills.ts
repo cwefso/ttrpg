@@ -1,0 +1,15 @@
+export const skillsOptions = [
+  { name: "Athletics", linkedAttribute: "agility" },
+  { name: "Common Knowledge", linkedAttribute: "smarts" },
+  { name: "Fighting", linkedAttribute: "agility" },
+  { name: "Healing", linkedAttribute: "smarts" },
+  { name: "Intimidation", linkedAttribute: "spirit" },
+  { name: "Investigation", linkedAttribute: "smarts" },
+  { name: "Notice", linkedAttribute: "smarts" },
+  { name: "Persuasion", linkedAttribute: "spirit" },
+  { name: "Repair", linkedAttribute: "smarts" },
+  { name: "Shooting", linkedAttribute: "agility" },
+  { name: "Stealth", linkedAttribute: "agility" },
+  { name: "Survival", linkedAttribute: "smarts" },
+  { name: "Taunt", linkedAttribute: "smarts" },
+];

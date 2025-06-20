@@ -1,0 +1,391 @@
+[{
+    "character": {
+      "name": "Aiden",
+      "year": "1999",
+      "edges": [
+        {
+          "name": "Charismatic",
+          "description": "+2 to Persuasion rolls."
+        },
+        {
+          "name": "Luck",
+          "description": "Starts each session with an extra Benny."
+        },
+        {
+          "name": "Thespian Specialization",
+          "description": "Performance specialized (d10)"
+        }
+      ],
+      "items": [
+        "Star Trek: The Experience name badge",
+        "Zima",
+        "Phaser prop (flashlight)",
+        "Sweet Future Suit +1 Charisma",
+        "Scouter Glasses 1D4",
+        "Conquistador Armor +1 Armor",
+        "Small Bag of Gold Coins",
+        "6 Bullets",
+        "Mr. Anderson the friendly Deinonychus",
+        "Assorted Snacks"
+      ],
+      "notes": "Skills inherit die type from linked attributes. Specialization Edges can increase skills +1 die type.",
+      "skills": {
+        "Taunt": "Spirit d8",
+        "Notice": "Smarts d8",
+        "Stealth": "Agility d6",
+        "Fighting": "Agility d6",
+        "Persuasion": "Spirit d8",
+        "Performance": "Spirit d10 (Specialized)",
+        "Knowledge (Pop Culture)": "Smarts d8"
+      },
+      "wounds": 0,
+      "bennies": 4,
+      "fatigue": 0,
+      "weapons": [
+        {
+          "name": "Evil Universe poke stick",
+          "damage": "Strength +d6"
+        },
+        {
+          "name": "Six Shooter",
+          "damage": "2d6"
+        }
+      ],
+      "attributes": {
+        "vigor": "d6",
+        "smarts": "d8",
+        "spirit": "d8",
+        "agility": "d6",
+        "strength": "d4"
+      },
+      "background": "Theater Major",
+      "hindrances": [
+        {
+          "name": "Obsession (The Matrix)",
+          "description": "It's truly an amazing film."
+        },
+        {
+          "name": "Curious",
+          "description": "Must make a Smarts roll to resist investigating something interesting or unusual."
+        },
+        {
+          "name": "Overconfident",
+          "description": "Believes he can handle any situation, leading to risky decisions."
+        }
+      ],
+      "parry": 5,
+      "toughness": 6,
+      "attribute_skill_links": {
+        "Agility": ["Fighting", "Stealth"],
+        "Smarts": ["Notice", "Knowledge (Pop Culture)"],
+        "Spirit": ["Taunt", "Persuasion", "Performance"],
+        "Strength": [],
+        "Vigor": []
+      }
+    }
+  },
+
+
+
+  {
+    "character": {
+      "name": "Patience Cooper",
+      "year": "1896",
+      "edges": [
+        {
+          "name": "Healer",
+          "description": "+2 to Healing rolls and can cure diseases with a raise."
+        },
+        {
+          "name": "Strong Willed",
+          "description": "+2 to resist Intimidation and Taunt."
+        },
+        {
+          "name": "Healing Specialization",
+          "description": "Healing skill increased by +1 die type (d8)"
+        }
+      ],
+      "items": [
+        "Well-worn Bible with pressed Hawaiian medicinal plants",
+        "Portable apothecary kit",
+        "Tobacco pouch",
+        "Decorative candles",
+        "Leprosy cure",
+        "Torch"
+      ],
+      "notes": "Skills inherit die type from linked attributes. Specialization Edges can increase skills +1 die type.",
+      "skills": {
+        "Faith": "Spirit d8",
+        "Notice": "Smarts d6",
+        "Healing": "Smarts d8 (Specialized)",
+        "Stealth": "Agility d4",
+        "Survival": "Vigor d6",
+        "Persuasion": "Spirit d8 (Untrained)",
+        "Knowledge (Hawaiian Medicine)": "Smarts d6"
+      },
+      "wounds": 0,
+      "bennies": 1,
+      "fatigue": 0,
+      "weapons": [
+        {
+          "name": "Walking Stick",
+          "notes": "Carved from koa wood, doubles as medical splint",
+          "damage": "Str+d4"
+        },
+        {
+          "name": "Chloroform Rag",
+          "notes": "3 uses before needing refill",
+          "damage": "Vigor check or unconscious"
+        },
+        {
+          "name": "Knife thing",
+          "damage": "Str +d4"
+        }
+      ],
+      "attributes": {
+        "vigor": "d6",
+        "smarts": "d6",
+        "spirit": "d8",
+        "agility": "d4",
+        "strength": "d4"
+      },
+      "background": "Leper",
+      "hindrances": [
+        {
+          "name": "Habit (Major)",
+          "description": "Her vow to help others is compulsive, requiring her to aid anyone in need, even at great personal risk."
+        },
+        {
+          "name": "Lame",
+          "description": "Her leprosy has worsened, reducing her Pace by 2."
+        },
+        {
+          "name": "Death Wish",
+          "description": "She believes her time is limited and takes dangerous risks to do good."
+        }
+      ],
+      "parry": 4,
+      "toughness": 5,
+      "attribute_skill_links": {
+        "Agility": ["Stealth"],
+        "Smarts": ["Notice", "Healing", "Knowledge (Hawaiian Medicine)"],
+        "Spirit": ["Faith", "Persuasion"],
+        "Vigor": ["Survival"],
+        "Strength": []
+      }
+    }
+  },
+
+
+  {
+    "character": {
+      "name": "Lotte St. John",
+      "year": "1967",
+      "edges": [
+        {
+          "name": "Attractive",
+          "description": "+2 to Persuasion rolls against those who might find her appealing."
+        },
+        {
+          "name": "Style",
+          "description": "+2 to any roll made with a benny."
+        },
+        {
+          "name": "Fashionista Specialization",
+          "description": "Knowledge (Fashion) specialized (d8)"
+        },
+        {
+          "name": "Runway Master Specialization",
+          "description": "Performance (Modeling) specialized (d10)"
+        }
+      ],
+      "items": [
+        "Purse",
+        "Makeup Kit",
+        "Hidden Hip Flask (Brandy)",
+        "Perfume",
+        "Future fancy clothing",
+        "Crucifix + rosary",
+        "Torch"
+      ],
+      "notes": "Skills inherit die type from linked attributes. Specialization Edges can increase skills +1 die type.",
+      "skills": {
+        "Taunt": "Spirit d8",
+        "Notice": "Smarts d6",
+        "Stealth": "Agility d8",
+        "Fighting": "Agility d8 (Untrained)",
+        "Shooting": "Agility d8 (Untrained)",
+        "Throwing": "Agility d8 (Untrained)",
+        "Persuasion": "Spirit d8",
+        "Driving (Auto)": "Agility d8",
+        "Knowledge (Fashion)": "Smarts d8 (Specialized)",
+        "Performance (Modeling)": "Spirit d10 (Specialized)"
+      },
+      "wounds": 0,
+      "bennies": 0,
+      "fatigue": 0,
+      "weapons": [
+        {
+          "name": "Hatpin",
+          "notes": "Concealed in hairstyle; +2 to conceal",
+          "range": "Melee",
+          "damage": "Str+d4"
+        },
+        {
+          "ap": 2,
+          "rof": 1,
+          "name": "Laser gun",
+          "notes": "Malfunction on 1 (d20)",
+          "range": "12/24/48",
+          "damage": "2d6+4"
+        },
+        {
+          "ap": 1,
+          "name": "Obsidian blade",
+          "notes": "Fragile: Breaks on 1 on Fighting die",
+          "range": "Melee",
+          "damage": "Str+d4"
+        }
+      ],
+      "attributes": {
+        "vigor": "d6",
+        "smarts": "d6",
+        "spirit": "d8",
+        "agility": "d8",
+        "strength": "d4"
+      },
+      "background": "Fashion Model",
+      "hindrances": [
+        {
+          "name": "Arrogant",
+          "description": "-2 to Support rolls; +2 to enemy Taunt rolls vs her"
+        },
+        {
+          "name": "Habit (Minor)",
+          "description": "Must make Smarts roll to resist luxury purchases"
+        },
+        {
+          "name": "Secret",
+          "description": "-2 to Persuasion if working-class roots revealed"
+        }
+      ],
+      "parry": 6,
+      "toughness": 5,
+      "attribute_skill_links": {
+        "Agility": ["Stealth", "Fighting", "Shooting", "Throwing", "Driving (Auto)"],
+        "Smarts": ["Notice", "Knowledge (Fashion)"],
+        "Spirit": ["Taunt", "Persuasion", "Performance (Modeling)"],
+        "Vigor": [],
+        "Strength": []
+      },
+      "encumbrance": {
+        "maxLoad": "40 lbs",
+        "penalty": "-1 Pace & Agility if overloaded",
+        "penaltyThreshold": "20 lbs"
+      },
+      "derivedStats": {
+        "Pace": 6,
+        "Size": 0,
+        "Charisma": 0,
+        "RunningDie": "d6"
+      },
+      "incapacitationPenalty": "-4 to all rolls"
+    }
+  },
+
+  {
+    "character": {
+      "name": "Kojak",
+      "year": "25~~",
+      "edges": [
+        {
+          "name": "Woodsman",
+          "description": "+2 to Survival in natural environments and +2 to Stealth while in wilderness settings."
+        },
+        {
+          "name": "Beast Bond",
+          "description": "+2 to Handle Animal and Riding rolls. Can take a raccoon or hummingbird as an animal companion."
+        },
+        {
+          "name": "Spear Master Specialization",
+          "description": "Fighting specialized (d8)"
+        },
+        {
+          "name": "Wilderness Survival Specialization",
+          "description": "Survival specialized (d10)"
+        },
+        {
+          "name": "Tracker Specialization",
+          "description": "Tracking specialized (d8)"
+        }
+      ],
+      "items": [
+        "Water Moon amulet (carved from sky-metal)",
+        "R.O.U.S waterskin with reed filter",
+        "Flute",
+        "Parachute Pack",
+        "Torch",
+        "Bulletproof Vest (+2 Armor)",
+        "Conquistador Hat"
+      ],
+      "notes": "<p>Got trapped on a spaceship with 2 different timelines / crews</p><p></p><p>FIND THE CAPTAIN</p><p>-You've seen a hologram of him</p><p></p><p>We did a big Cyberpunk adventure, got a makeover, watched Matrix 2, went to a party, met head of engineering, fought a huge robot in the reactor core.</p><p></p><p>Blackwell stole my spear to power future-Dayton. He wants to stop the older version of himself from making 4 big changes:</p><p>-Killed Neanderthals</p><p>-Killed Alexander the Great</p><ul><li><p>-Helped Allies win World War 2</p></li><li><p>-Prevented Alien Contact but caused the fall of Water Moon</p></li></ul><p></p><p>I am Wearing</p><p>Bulletproof Vest</p><p>Conquistador Hat</p><p></p><p>I made friends with a Utahraptor named Fido</p><p></p><p>Captain pulled 5 people, but there are four of us, and he has escaped into time.</p><p></p><p>Talking to Chak-- Dinosaur Handler: He's been chomped up pretty good over three months. They have a triceratops</p><p></p><p>We are headed into the tunnels with Balam- Sneaky but drunk</p><p></p><p></p><p>I can make TRAIN WHISTLE SOUND.</p>",
+      "skills": {
+        "Notice": "Smarts d6",
+        "Healing": "Smarts d6 (Untrained)",
+        "Stealth": "Agility d6",
+        "Fighting": "Agility d8 (Specialized)",
+        "Survival": "Vigor d10 (Specialized)",
+        "Tracking": "Smarts d8 (Specialized)",
+        "Intimidation": "Spirit d8 (Untrained)"
+      },
+      "wounds": 0,
+      "bennies": 0,
+      "fatigue": 0,
+      "weapons": [
+        {
+          "name": "Electro Spear",
+          "notes": "A futuristic spear that can deliver an electric shock",
+          "damage": "Str+d6"
+        },
+        {
+          "name": "R.O.U.S. Tooth Knife",
+          "notes": "Serrated edge, +1 vs tough hides",
+          "damage": "Str+d4"
+        },
+        {
+          "name": "Sling",
+          "damage": "Agility, D6"
+        }
+      ],
+      "attributes": {
+        "vigor": "d8",
+        "smarts": "d6",
+        "spirit": "d8",
+        "agility": "d6",
+        "strength": "d8"
+      },
+      "background": "Future Caveman",
+      "hindrances": [
+        {
+          "name": "Loyal",
+          "description": "Kojak will never betray or abandon his allies, even when it puts him at risk."
+        },
+        {
+          "name": "Outsider",
+          "description": "-2 to Persuasion rolls with those outside his tribe."
+        }
+      ],
+      "parry": 6,
+      "toughness": 8,
+      "attribute_skill_links": {
+        "Agility": ["Stealth", "Fighting"],
+        "Smarts": ["Notice", "Healing", "Tracking"],
+        "Spirit": ["Intimidation"],
+        "Vigor": ["Survival"],
+        "Strength": []
+      }
+    }
+  }
+]
+
+
